@@ -1,0 +1,40 @@
+@use '/src/styling/breakpoints.scss' as b;
+
+.search {
+    display: flex;
+    gap: 1rem;
+    position: relative;
+    width: 100%;
+
+    @include b.md {
+        width: unset;
+    }
+
+    input {
+        height: 2rem;
+        border-radius: 60rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        width: 100%;
+    }
+
+    .searchIcon,
+    button {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        display: block;
+    }
+
+    .searchIcon {
+        left: 0.4rem;
+    }
+
+    button {
+        right: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

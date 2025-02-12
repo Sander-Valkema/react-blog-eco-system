@@ -1,0 +1,25 @@
+@use '/src/styling/breakpoints.scss' as b;
+
+.backgroundLogo {
+    position: fixed;
+    width: 130rem;
+    height: 130rem;
+    left: -10rem;
+    bottom: -40rem;
+    right: 0;
+    margin: auto;
+    transform: rotate(24deg);
+    pointer-events: none;
+    opacity: 0.01;
+}
+
+.author {
+    user-select: none;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+
+    @include b.md {
+        text-align: end;
+    }
+}

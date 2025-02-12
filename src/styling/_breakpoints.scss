@@ -1,0 +1,31 @@
+@use "sass:map";
+@use "sass:string";
+@use "scss-variables" as v;
+
+// mobile view
+@mixin sm {
+    @media only screen and (min-width: #{map.get(v.$breakpoints, "sm")}) {
+        @content;
+    }
+ }
+ 
+// tablet view
+@mixin md {
+    @media only screen and (min-width: #{map.get(v.$breakpoints, "md")}) {
+        @content;
+    }
+ }
+ 
+// desktop view
+@mixin lg {
+    @media only screen and (min-width: #{map.get(v.$breakpoints, "lg")}) {        
+        @content;
+    }
+ }
+ 
+ // desktop view
+ @mixin xl {
+    @media only screen and (min-width: #{map.get(v.$breakpoints, "xl")}) {
+        @content;
+    }
+ }

@@ -1,0 +1,57 @@
+@use 'scss-variables' as v;
+
+:root {
+    // accent colors
+    --color-accent-primary: #1a0036;
+    --color-accent-primary-on-hover: #0a0015;
+
+    --color-accent-secondary: #f60;
+    --color-accent-secondary-on-hover: #b64200;
+
+    --color-accent-tertiary: #ffffff;
+    --color-accent-tertiary-on-hover: #ffffff;
+
+    // light theme colors
+    --color-light-background-primary: #fefefe;
+    --color-light-background-secondary: #eeeeee;
+
+    --color-light-border: #b9b9b9;
+
+    --color-light-font-primary: #fefefe;
+    --color-light-font-secondary: #808080;
+
+    // dark theme colors
+    --color-dark-background-primary: #212121;
+    --color-dark-background-secondary: #333333;
+
+    --color-dark-border: #555555;
+
+    --color-dark-font-primary: #000000;
+    --color-dark-font-secondary: #999999;
+
+    // toast colors
+    --color-error: #ea5f5f;
+    --color-error-border: #ad4444;
+    --color-error-loader: #801e1e;
+    --color-info: #44d7b5;
+    --color-info-border: #37b79a;
+    --color-info-loader: #1a5945;
+    --color-warning: #efd425;
+    --color-warning-border: #a8941a;
+    --color-warning-loader: #5b540a;
+    --color-success: #3d7927;
+    --color-success-border: #2e621e;
+    --color-success-loader: #204116;
+
+    // z-indexes
+    --z-index-header: 100;
+
+    // shadows
+    --box-shadow-default: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    --box-shadow-subtle: 0 2px 4px 0 rgba(0, 0, 0, 0.08), 0 4px 7px 0 rgba(0, 0, 0, 0.11);
+
+    // breakpoints
+    @each $breakpoint, $value in v.$breakpoints {
+        --breakpoint-#{$breakpoint}: #{$value};
+    }
+}

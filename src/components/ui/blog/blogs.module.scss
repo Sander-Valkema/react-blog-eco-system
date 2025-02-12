@@ -1,0 +1,68 @@
+@use './src/styling/breakpoints' as b;
+
+.blog {
+    a {
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+    }
+
+    .list {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .results {
+        user-select: none;
+        margin-bottom: 0;
+        font-size: 0.8rem;
+    }
+
+    .topFilters {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        gap: 1rem;
+        margin: 1rem 0;
+
+        @include b.md {
+            flex-direction: row;
+        }
+    }
+
+    .noBlogsFound {
+        display: flex;
+        gap: 0.3rem;
+        margin-top: 2rem;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        background: var(--color-error);
+        box-shadow: var(--box-shadow-default);
+        padding: 0.3rem 1rem;
+        border-radius: 0.6rem;
+    }
+
+    @for $i from 1 through 3 {
+        &--col-mobile-#{$i} .list {
+            grid-template-columns: repeat($i, minmax(0, 1fr));
+        }
+    }
+
+    @include b.md {
+        @for $i from 1 through 3 {
+            &--col-tablet-#{$i} .list {
+                grid-template-columns: repeat($i, minmax(0, 1fr));
+            }
+        }
+    }
+
+    @include b.lg {
+        @for $i from 1 through 3 {
+            &--col-desktop-#{$i} .list {
+                grid-template-columns: repeat($i, minmax(0, 1fr));
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+@use '/src/styling/breakpoints.scss' as b;
+
+.sort {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    width: 100%;
+
+    @include b.md {
+        width: unset;
+    }
+
+    p.title {
+        margin: 0;
+        left: 0;
+    }
+
+    select {
+        height: 2rem;
+        border-radius: 60rem;
+        padding: 0 0.5rem 0 0.7rem;
+        cursor: pointer;
+        width: 100%;
+
+        @include b.md {
+            width: unset;
+        }   
+    }
+}

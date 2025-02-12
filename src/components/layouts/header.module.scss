@@ -1,0 +1,75 @@
+@use '/src/styling/breakpoints.scss' as b;
+
+header.header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.3rem;
+    z-index: var(--z-index-header);
+    box-shadow: var(--box-shadow-default);
+    overflow: hidden;
+
+    @include b.md {
+        padding: 0.8rem 1rem;
+    }
+
+    .headerLogo {
+        position: absolute;
+        width: 10rem;
+        height: 10rem;
+        left: -1rem;
+        transform: rotate(-45deg);
+        opacity: 0.08;
+        pointer-events: none;
+    }
+
+    h2,
+    h3,
+    h4 {
+        margin: 0;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .logoContainer {
+        line-height: 1rem;
+    }
+
+    fieldset {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.5rem;
+
+        p {
+            margin: 0;
+        }
+
+        svg {
+            position: absolute;
+            left: 0.5rem;
+            z-index: 1;
+        }
+
+        select {
+            width: 100%;
+            border-radius: 60rem;
+            padding: 0.2rem 1rem 0.2rem 2rem;
+            cursor: pointer;
+            text-align: center;
+
+            option {
+                text-align: center;
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+@use 'breakpoints' as b;
+
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+button {
+    cursor: pointer;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+main {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    flex: 1;
+
+    @include b.md {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+}

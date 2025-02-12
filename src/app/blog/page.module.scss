@@ -1,0 +1,80 @@
+@use '/src/styling/breakpoints.scss' as b;
+
+.blogElement {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: 0.6rem;
+    box-shadow: var(--box-shadow-default);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+
+    &.blogElement--dark {
+        background-color: var(--color-dark-background-secondary);
+
+        ul.meta p,
+        ul.meta svg {
+            color: var(--color-dark-font-secondary);
+        }
+    }
+
+    &.blogElement--light {
+        background-color: var(--color-light-background-secondary);
+
+        ul.meta p,
+        ul.meta svg {
+            color: var(--color-light-font-secondary);
+        }
+    }
+
+    .content {
+        padding: 1.5rem;
+        min-height: 12rem;
+
+        @include b.md {
+            min-height: 15rem;
+        }
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+
+    img {
+        display: flex;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    ul.meta {
+        margin: 0;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        p {
+            margin: 0;
+            font-size: 0.7rem;
+        }
+    }
+
+    .tags {
+        display: flex;
+        gap: 0.2rem;
+    }
+
+    .intro {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+    }
+}
