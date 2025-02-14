@@ -24,7 +24,7 @@ Screenshot:
 
 # Setup & Usage
 
-Run these commands 
+Clone the repository on your computer and run these commands in the repository folder:
 
 ```bash
 npm install
