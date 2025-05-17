@@ -5,7 +5,7 @@ import { useRef, useState, useCallback, useLayoutEffect } from 'react'
 import styles from './sort.module.scss'
 
 // models
-import { ASC, DESC, SortParams as SortParamsInterface, SortKeyDirection as SortKeyDirectionType } from '@/models/blog'
+import { Sort as SortEnum, SortParams as SortParamsInterface, SortKeyDirection as SortKeyDirectionType } from '@/models/blog'
 
 const Sort = <T,>({ keys, sortValue, onChange }: React.PropsWithChildren<SortParamsInterface<T> & {sortValue: SortKeyDirectionType}>) => {
     /**
@@ -14,7 +14,7 @@ const Sort = <T,>({ keys, sortValue, onChange }: React.PropsWithChildren<SortPar
     const sorts = useRef<SortKeyDirectionType[]>((() => {
         return (
             keys?.reduce((acc: SortKeyDirectionType[], sortKey: string): SortKeyDirectionType[] => {
-                return [...(acc ?? []), [sortKey, DESC], [sortKey, ASC]]
+                return [...(acc ?? []), [sortKey, SortEnum.DESC], [sortKey, SortEnum.ASC]]
             }, []) ?? []
         )
     })())

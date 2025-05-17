@@ -1,8 +1,10 @@
-import { RootType } from "@/store/themeProvider"
+import { ThemeEnum } from "@/store/themeProvider"
+import { type ImageProps } from 'next/image'
 
-
-export const DESC: string = 'descending'
-export const ASC: string = 'ascending'
+export enum Sort {
+    DESC = 'descending',
+    ASC = 'ascending'
+}
 
 /**
  * Blog item data
@@ -38,7 +40,7 @@ export interface BlogList<T> {
     blogData: (BlogItem<T>)[],
     blogElement: (blog: BlogItem<T>) => React.JSX.Element
     className?: string,
-    colorScheme?: RootType,
+    colorScheme?: ThemeEnum,
     colMobile?: 1 | 2 | 3,
     colTablet?: 1 | 2 | 3,
     colDesktop?: 1 | 2 | 3,
@@ -100,7 +102,7 @@ export interface SortParams<T> {
  */
 export type SortKeyDirection = [
     sortKey: string,
-    sortDirection: typeof ASC | typeof DESC
+    sortDirection: Sort
 ]
 
 /**
@@ -119,9 +121,9 @@ export interface TagsParams {
 /**
  * Search component configuration
  * 
- * show     - show search component.
+ * show         - show search component.
  * debounceTime - time to debounce the search results. In milliseconds
- * onChange - function to return updated search text
+ * onChange     - function to return updated search text
  */
 export interface SearchParams {
     show: boolean,

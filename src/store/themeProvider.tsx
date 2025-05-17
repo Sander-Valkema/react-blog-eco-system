@@ -7,83 +7,79 @@ import React, { createContext, useCallback, useContext, useState, useLayoutEffec
 import { setCookie, getCookie } from '@/hooks/use-cookie'
 
 // models
-export type RootType = 'light' | 'dark'
-export type ThemeType = RootType | 'system'
+export enum ThemeEnum {
+	LIGHT = 'light',
+	DARK = 'dark',
+	SYSTEM = 'system',
+}
+
 export interface ThemeInterface {
-    theme: ThemeType
-    colorScheme: RootType
-    setTheme: Dispatch<SetStateAction<ThemeType>>
-    isLoaded: boolean
+	theme?: ThemeEnum
+	setTheme: Dispatch<SetStateAction<ThemeEnum | undefined>>
 }
 
 export const ThemeContext: React.Context<ThemeInterface | undefined> = createContext<ThemeInterface | undefined>(undefined as any)
 
 export const useThemeContext = (): ThemeInterface => {
-    const context: ThemeInterface | undefined = useContext(ThemeContext)
-    if (!context) throw new Error('[ThemeProvider] parameters for ThemeContext are undefined.')
+	const context: ThemeInterface | undefined = useContext(ThemeContext)
+	if (!context) throw new Error('[ThemeProvider] parameters for ThemeContext are undefined.')
 
-    return context
+	return context
 }
 
 /**
  * Store website theme data
- * 
- * @param {children: React.ReactNode} props 
- * 
- * @returns 
+ *
+ * @param {children: React.ReactNode} props
+ *
+ * @returns
  */
 const ThemeProvider: React.FC<{
-    children: React.ReactNode
+	children: React.ReactNode
 }> = props => {
-    const [theme, setTheme] = useState<ThemeType>('system')
-    const [colorScheme, setColorScheme] = useState<RootType>('dark')
-    const [isLoaded, setIsLoaded] = useState<boolean>(false)
+	const [theme, setTheme] = useState<ThemeEnum>()
+
+	/**
+	 * Get color scheme
+	 *
+	 * @param {ThemeType} t - theme options
+	 */
+	const getColorScheme = useCallback((t: ThemeEnum): ThemeEnum => {
+		const isSystemDarkMode: boolean = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+		if (t === ThemeEnum.SYSTEM) return isSystemDarkMode ? ThemeEnum.DARK : ThemeEnum.LIGHT
+
+		return t
+	}, [])
 
     /**
-     * Get color scheme
-     *
-     * @param {ThemeType} tt - theme options
-     */
-    const getColorScheme = useCallback((tt: ThemeType): RootType => {
-        const isSystemDarkMode: boolean = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-        if (tt === 'system') return isSystemDarkMode ? 'dark' : 'light'
+	 * Initialize theme 
+	 */
+	useLayoutEffect(() => {
+		setTheme(getCookie('theme') as ThemeEnum ?? getColorScheme(ThemeEnum.SYSTEM))
+	}, [getColorScheme])
 
-        return tt
-    }, [])
+	/**
+	 * Execute necessary actions when theme has changed
+	 */
+	useLayoutEffect(() => {
+		if (!theme) return
+		document.body.className = `theme theme--${theme}`
+		setCookie({
+			name: 'theme',
+			value: theme,
+		})
+	}, [theme, getColorScheme])
 
-    /**
-     * Set theme during initialization
-     */
-    useLayoutEffect(() => {
-        setTheme((getCookie('theme') as ThemeType) ?? 'system')
-    }, [])
-
-    /**
-     * Execute necessary actions when theme has changed
-     */
-    useLayoutEffect(() => {
-        const clScheme = getColorScheme(theme)
-        setColorScheme(clScheme)
-        document.body.className = `theme theme--${clScheme}`
-        setCookie({
-            name: 'theme',
-            value: theme,
-        })
-        setIsLoaded(true)
-    }, [theme, getColorScheme])
-
-    return (
-        <ThemeContext.Provider
-            value={{
-                theme,
-                colorScheme,
-                setTheme,
-                isLoaded,
-            }}
-        >
-            {props.children}
-        </ThemeContext.Provider>
-    )
+	return (
+		<ThemeContext.Provider
+			value={{
+				theme,
+				setTheme
+			}}
+		>
+			{props.children}
+		</ThemeContext.Provider>
+	)
 }
 
 export default ThemeProvider

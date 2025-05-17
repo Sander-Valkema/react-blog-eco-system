@@ -1,16 +1,13 @@
 'use client'
 
 // vendor
-import { use, useRef, useMemo } from 'react'
+import { useRef, useMemo } from 'react'
 import Parser from 'html-react-parser'
 import Link from 'next/link'
 import Image from 'next/image'
 
 // styling
 import styles from './blog.module.scss'
-
-// store
-import { useThemeContext, type RootType } from '@/store/themeProvider'
 
 // models
 import { BlogItem as BlogItemInterface } from '@/models/blog'
@@ -28,15 +25,12 @@ import CalendarLineIcon from '#/icons/calendar-line.svg'
 import { BlogData } from '@/data/blog.ts'
 
 const Blog: React.FC<{ id: number }> = ({ id }) => {
-    const themeProvider = useThemeContext()
-    const colorScheme = useMemo<RootType>(() => themeProvider.colorScheme, [themeProvider.colorScheme])
-
-    const blog = useRef<Blog | undefined>((() => (BlogData as Blog[]).find((blog: Blog) => blog.id === id))())
+    const blog = useRef<Blog|undefined>((() => (BlogData as Blog[]).find((blog: Blog) => blog.id === id))())
 
     if (!blog.current) return <h3 className={styles.missingBlog}>Sorry, this blog does not exist.</h3>
 
     return (
-        <main className={`container ${styles.blog} ${styles['blog--' + colorScheme]}`}>
+        <main className={`container ${styles.blog} blog`}>
             <ul className={styles.breadcrumbs}>
                 <li><Link href="/blog">blog</Link></li>
                 <li>{blog.current.title.toLowerCase()}</li>
@@ -49,7 +43,7 @@ const Blog: React.FC<{ id: number }> = ({ id }) => {
                         alt={blog.current.image?.alt ?? 'blog image'}
                     />
                 )}
-                <ul className={styles.meta}>
+                <ul className={`${styles.meta} meta`}>
                     {blog.current.date && (
                         <li>
                             <CalendarLineIcon

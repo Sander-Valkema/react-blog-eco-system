@@ -5,42 +5,7 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 0.35rem;
-    margin: 1rem auto;
-
-    &.tags--dark .tag {
-        background-color: var(--color-dark-background-primary);
-        border: 1px solid var(--color-dark-border);
-
-        p {
-            color: white;
-        }
-
-        &--active {
-            background-color: white;
-            border-color: white;
-
-            p {
-                color: black;
-            }
-        }
-    }
-
-    &.tags--light .tag {
-        background-color: var(--color-light-background-primary);
-        border: 1px solid var(--color-light-border);
-
-        p {
-            color: black;
-        }
-
-        &--active {
-            background-color: black;
-            border-color: black;
-            p {
-                color: white;
-            }
-        }
-    }
+    margin: 1rem auto;   
 
     @include b.md {
         margin: 1rem 0;

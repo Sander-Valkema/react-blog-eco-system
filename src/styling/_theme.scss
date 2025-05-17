@@ -1,47 +1,136 @@
 .theme.theme--light {
-    &,
-    select,
-    option,
-    input {
-        background-color: var(--color-light-background-primary);
-        color: black;
-    }
+	&,
+	select,
+	option,
+	input {
+		background-color: var(--color-light-background-primary);
+		color: black;
+	}
 
-    p,
-    svg {
-        color: black;
-    }
+	p,
+	svg {
+		color: black;
+	}
 
-    select,
-    input {
-        border: 1px solid var(--color-light-border);
-    }
+	select,
+	input {
+		border: 1px solid var(--color-light-border);
+	}
 
-    header {
-        background-color: var(--color-light-background-primary);
-    }
+	header {
+		background-color: var(--color-light-background-primary);
+	}
+
+	.pagination {
+		.page,
+		.first-last,
+		.next-prev {
+			border: 1px solid var(--color-light-border);
+		}
+
+		.page--active {
+			color: white;
+			background-color: black;
+			border: 1px solid black;
+		}
+	}
+
+	.tags .tag {
+		background-color: var(--color-light-background-primary);
+		border: 1px solid var(--color-light-border);
+
+		p {
+			color: black;
+		}
+
+		&--active {
+			background-color: black;
+			border-color: black;
+			p {
+				color: white;
+			}
+		}
+	}
+
+	.blogElement {
+		background-color: var(--color-light-background-secondary);
+
+		ul.meta p,
+		ul.meta svg {
+			color: var(--color-light-font-secondary);
+		}
+	}
+
+	.blog ul.meta {
+		border-bottom: 1px solid var(--color-light-border);
+	}
 }
 
 .theme.theme--dark {
-    &,
-    select,
-    option,
-    input {
-        background-color: var(--color-dark-background-primary);
-        color: white;
-    }
+	&,
+	select,
+	option,
+	input {
+		background-color: var(--color-dark-background-primary);
+		color: white;
+	}
 
-    p,
-    svg {
-        color: white;
-    }
+	p,
+	svg {
+		color: white;
+	}
 
-    select,
-    input {
-        border: 1px solid var(--color-dark-border);
-    }
+	select,
+	input {
+		border: 1px solid var(--color-dark-border);
+	}
 
-    header {
-        background-color: var(--color-dark-background-primary);
-    }
+	header {
+		background-color: var(--color-dark-background-primary);
+	}
+
+	.pagination {
+		.page,
+		.firstLast,
+		.nextPrev {
+			border: 1px solid var(--color-dark-border);
+		}
+
+		.page--active {
+			color: black;
+			background-color: white;
+			border: 1px solid white;
+		}
+	}
+
+	.tags .tag {
+		background-color: var(--color-dark-background-primary);
+		border: 1px solid var(--color-dark-border);
+
+		p {
+			color: white;
+		}
+
+		&--active {
+			background-color: white;
+			border-color: white;
+
+			p {
+				color: black;
+			}
+		}
+	}
+
+	.blogElement {
+		background-color: var(--color-dark-background-secondary);
+
+		ul.meta p,
+		ul.meta svg {
+			color: var(--color-dark-font-secondary);
+		}
+	}
+
+	.blog ul.meta {
+		border-bottom: 1px solid var(--color-dark-border);
+	}
 }

@@ -1,9 +1,6 @@
 // vendor
 import { useLayoutEffect, useRef, useCallback, useMemo, useState } from 'react'
 
-// store
-import { useThemeContext, type RootType } from '@/store/themeProvider'
-
 // icons/images
 import CloseLineIcon from '#/icons/close-line.svg'
 
@@ -15,8 +12,6 @@ type counterType = { tag: string; occurence: number }
 import styles from './tags.module.scss'
 
 const Tags = <T,>({ blogData, onChange, tagsValue, max }: React.PropsWithChildren<TagsParamsInterface & { tagsValue: string[], blogData: BlogItemInterface<T>[] }>) => {
-    const themeProvider = useThemeContext()
-    const colorScheme = useMemo<RootType>(() => themeProvider.colorScheme, [themeProvider.colorScheme])
 
     /**
      * @type {const} activeTags - selected active tags
@@ -72,20 +67,19 @@ const Tags = <T,>({ blogData, onChange, tagsValue, max }: React.PropsWithChildre
     }, [activeTags, onChange])
 
     return (
-        <ul className={`${styles.tags} ${styles['tags--' + colorScheme]}`}>
+        <ul className={`${styles.tags} tags`}>
             <li className={styles.title}>
                 <p>Tags</p>
             </li>
             {tags.current.map((tag: string) => (
                 <li
                     key={tag}
-                    className={`${styles.tag} ${activeTags && activeTags.includes(tag) ? styles['tag--active'] : ''}`}
+                    className={`${styles.tag} tag ${activeTags && activeTags.includes(tag) ? styles['tag--active'] : ''}`}
                     onClick={onClickAddHandler(tag)}
                 >
                     <p>{tag.toLocaleLowerCase()}</p>
                 </li>
             ))}
-
             {activeTags && activeTags.length > 0 && (
                 <li
                     className={styles.remove}

@@ -19,9 +19,6 @@ import FilterProvider from '@/store/queryProvider'
 // layouts
 import Header from '@/components/layouts/header'
 
-// components
-import Loader from '@/components/ui/loader'
-
 export const metadata: Metadata = {
     title: 'React blog eco system',
     description: 'Blog eco system build with React',
@@ -36,15 +33,13 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = props => (
         <body>
             <ThemeProvider>
                 <FilterProvider>
-                    <Loader>
-                        <Header />
-                        <ArticleLineIcon
-                            className={styles.backgroundLogo}
-                            alt="article"
-                        />
-                        {props.children}
-                        <footer className={styles.author}>developed by Sander Valkema</footer>
-                    </Loader>
+                    <Header />
+                    <ArticleLineIcon
+                        className={styles.backgroundLogo}
+                        alt="article"
+                    />
+                    {props.children}
+                    <footer className={styles.author}>developed by Sander Valkema</footer>
                 </FilterProvider>
             </ThemeProvider>
         </body>

@@ -1,7 +1,7 @@
 'use client'
 
 // vendor
-import React, { useState, useCallback, useEffect, useRef, useLayoutEffect, useContext } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import Link from 'next/link'
 
 // styling
@@ -12,25 +12,20 @@ import PaintBrushLineIcon from '#/icons/paint-brush-line.svg'
 import ArticleLineIcon from '#/icons/article-line.svg'
 
 // store
-import { useThemeContext, type ThemeType } from '@/store/themeProvider'
+import { useThemeContext, ThemeEnum } from '@/store/themeProvider'
 
 const Header: React.FC = () => {
-    const [theme, setTheme] = useState<ThemeType>('system')
     const themeProvider = useThemeContext()
 
     const onChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        themeProvider.setTheme(event.target.value as ThemeType)
+        themeProvider.setTheme(event.target.value as ThemeEnum)
     }
-
-    useLayoutEffect(() => {
-        setTheme(themeProvider.theme)
-    }, [themeProvider.theme])
 
     return (
         <header className={styles.header}>
             <div className={styles.logoContainer}>
                 <Link href="/">
-                    <h2>Vue Demo</h2>
+                    <h2>React Demo</h2>
                     <h4>Blog Eco System</h4>
                 </Link>
             </div>
@@ -42,10 +37,10 @@ const Header: React.FC = () => {
                 />
                 <select
                     className={styles.themeSelect}
-                    value={theme}
+                    value={themeProvider.theme}
                     onChange={onChangeHandler}
                 >
-                    {(['light', 'dark', 'system'] as ThemeType[]).map((th: ThemeType) => (
+                    {([ThemeEnum.DARK, ThemeEnum.LIGHT]).map((th: ThemeEnum) => (
                         <option
                             key={th}
                             value={th}

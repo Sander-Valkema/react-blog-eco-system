@@ -4,7 +4,7 @@
 import React, { useState, useCallback, useLayoutEffect, useMemo } from 'react'
 
 // store
-import { useThemeContext, type RootType } from '@/store/themeProvider'
+// import { useThemeContext, type RootType } from '@/store/themeProvider'
 
 // hooks
 import { getArrayRange } from '@/hooks/use-generic'
@@ -36,8 +36,6 @@ const Pagination = ({
     showNextPrev,
     showFirstLast,
 }: React.PropsWithChildren<PaginationParamsInterface & { pageValue: number, totalItems: number }>) => {
-    const themeProvider = useThemeContext()
-    const colorScheme = useMemo<RootType>(() => themeProvider.colorScheme, [themeProvider.colorScheme])
     const [pageNr, setPageNr] = useState<number>(pageValue)
     const totalPages = useMemo<number>(() => Math.ceil(totalItems / maxItemsPerPage), [totalItems, maxItemsPerPage])
 
@@ -95,10 +93,10 @@ const Pagination = ({
     if (totalPages === 1 || !paginationData) return <></>
 
     return (
-        <ul className={`${styles.pagination} ${styles['pagination--' + colorScheme]}`}>
+        <ul className={`${styles.pagination} pagination`}>
             {showFirstLast && (
                 <li
-                    className={`${styles.firstLast} ${['first', 'at start', 'none'].includes(paginationData?.pos) ? [styles.hidden] : ''}`}
+                    className={`${styles.firstLast} firstLast ${['first', 'at start', 'none'].includes(paginationData?.pos) ? [styles.hidden] : ''}`}
                     onClick={onClickPageHandler(1)}
                 >
                     <ArrowLeftDoubleLineIcon
@@ -110,7 +108,7 @@ const Pagination = ({
             )}
             {showNextPrev && (
                 <li
-                    className={`${styles.nextPrev} ${['first', 'none'].includes(paginationData?.pos) ? [styles.hidden] : ''}`}
+                    className={`${styles.nextPrev} nextPrev ${['first', 'none'].includes(paginationData?.pos) ? [styles.hidden] : ''}`}
                     onClick={onClickPageHandler(pageValue - 1)}
                 >
                     <ArrowLeftSLineIcon
@@ -123,7 +121,7 @@ const Pagination = ({
             {(paginationData?.pageRange ?? []).map((pg: number) => (
                 <li
                     key={pg}
-                    className={`${styles.page} ${pg === pageValue ? styles['page--active'] : ''}`}
+                    className={`${styles.page} page ${pg === pageValue ? styles['page--active'] : ''} ${pg === pageValue ? 'page--active' : ''}`}
                     onClick={onClickPageHandler(pg)}
                 >
                     {pg}
@@ -131,7 +129,7 @@ const Pagination = ({
             ))}
             {showNextPrev && (
                 <li
-                    className={`${styles.nextPrev} ${['last', 'none'].includes(paginationData?.pos) ? styles.hidden : ''}`}
+                    className={`${styles.nextPrev} nextPrev ${['last', 'none'].includes(paginationData?.pos) ? styles.hidden : ''}`}
                     onClick={onClickPageHandler(pageValue + 1)}
                 >
                     <ArrowRightSLineIcon
@@ -143,7 +141,7 @@ const Pagination = ({
             )}
             {showFirstLast && (
                 <li
-                    className={`${styles.firstLast} ${['last', 'at end', 'none'].includes(paginationData?.pos) ? styles.hidden : ''}`}
+                    className={`${styles.firstLast} firstLast ${['last', 'at end', 'none'].includes(paginationData?.pos) ? styles.hidden : ''}`}
                     onClick={onClickPageHandler(totalPages)}
                 >
                     <ArrowRightDoubleLineIcon

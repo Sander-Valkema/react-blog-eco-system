@@ -11,24 +11,6 @@
     overflow: hidden;
     height: 100%;
 
-    &.blogElement--dark {
-        background-color: var(--color-dark-background-secondary);
-
-        ul.meta p,
-        ul.meta svg {
-            color: var(--color-dark-font-secondary);
-        }
-    }
-
-    &.blogElement--light {
-        background-color: var(--color-light-background-secondary);
-
-        ul.meta p,
-        ul.meta svg {
-            color: var(--color-light-font-secondary);
-        }
-    }
-
     .content {
         padding: 1.5rem;
         min-height: 12rem;
